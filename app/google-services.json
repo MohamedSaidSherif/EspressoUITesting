@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1047419595366",
+    "project_id": "espressouitesting-98926",
+    "storage_bucket": "espressouitesting-98926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047419595366:android:9db3b545a3dfb1666bdba7",
+        "android_client_info": {
+          "package_name": "com.android.espressouitesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047419595366-qu9mpmjn84j89c2s9o8st5valubl92ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT1VrgOasUWhz9qFCzM0wigstLarH8tVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047419595366-qu9mpmjn84j89c2s9o8st5valubl92ns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
