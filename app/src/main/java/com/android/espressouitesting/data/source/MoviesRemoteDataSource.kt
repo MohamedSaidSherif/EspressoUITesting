@@ -4,7 +4,7 @@ import com.android.espressouitesting.data.DummyMovies.INFINITY_WAR
 import com.android.espressouitesting.data.DummyMovies.THE_RUNDOWN
 import com.android.espressouitesting.data.Movie
 
-object MoviesRemoteDataSource: MoviesDataSource {
+class MoviesRemoteDataSource: MoviesDataSource {
 
     private var MOVIES_REMOTE_DATA = LinkedHashMap<Int, Movie>(2)
 

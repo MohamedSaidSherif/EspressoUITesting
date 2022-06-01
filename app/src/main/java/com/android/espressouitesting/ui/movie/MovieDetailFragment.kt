@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.android.espressouitesting.R
 import com.android.espressouitesting.data.Movie
-import com.android.espressouitesting.data.source.MoviesRemoteDataSource
+import com.android.espressouitesting.data.source.MoviesDataSource
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
-class MovieDetailFragment : Fragment(){
+class MovieDetailFragment(
+    private val requestOptions: RequestOptions,
+    private val moviesDataSource: MoviesDataSource
+) : Fragment(){
 
     private lateinit var movie: Movie
 
@@ -25,7 +29,7 @@ class MovieDetailFragment : Fragment(){
         super.onCreate(savedInstanceState)
         arguments?.let { args ->
             args.getInt("movie_id").let{ movieId ->
-                MoviesRemoteDataSource.getMovie(movieId)?.let{ movieFromRemote ->
+                moviesDataSource.getMovie(movieId)?.let{ movieFromRemote ->
                     movie = movieFromRemote
                 }
             }
@@ -67,6 +71,7 @@ class MovieDetailFragment : Fragment(){
     private fun setMovieDetails(){
         movie.let{ nonNullMovie ->
             Glide.with(this)
+                .applyDefaultRequestOptions(requestOptions)
                 .load(nonNullMovie.image)
                 .into(movie_image)
             movie_title.text = nonNullMovie.title

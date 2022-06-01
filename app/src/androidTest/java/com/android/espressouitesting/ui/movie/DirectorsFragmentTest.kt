@@ -24,6 +24,7 @@ class DirectorsFragmentTest {
         val bundle = Bundle()
         bundle.putStringArrayList("args_directors", directors)
 
+        //WHEN
         val scenario = launchFragmentInContainer<DirectorsFragment>(
             fragmentArgs = bundle,
             factory = fragmentFactory

@@ -4,12 +4,16 @@ import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.espressouitesting.R
 import com.android.espressouitesting.data.DummyMovies
+import com.android.espressouitesting.data.Movie
+import com.android.espressouitesting.data.source.MoviesRemoteDataSource
 import com.android.espressouitesting.factory.MovieFragmentFactory
+import com.bumptech.glide.request.RequestOptions
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -32,6 +36,36 @@ class MovieDetailFragmentTest {
         //THEN
         onView(withId(R.id.movie_title)).check(matches(withText(movie.title)))
 
+        onView(withId(R.id.movie_description)).check(matches(withText(movie.description)))
+    }
+
+    @Test
+    fun test_isMovieDataVisible_Mockk() {
+        //GIVEN
+        val movie = DummyMovies.THE_RUNDOWN
+
+        val moviesDataSource = mockk<MoviesRemoteDataSource>()
+        every {
+            moviesDataSource.getMovie(movie.id)
+        } returns movie
+        val requestOptions = RequestOptions
+            .placeholderOf(R.drawable.default_image)
+            .error(R.drawable.default_image)
+        val fragmentFactory = MovieFragmentFactory(
+            requestOptions,
+            moviesDataSource
+        )
+        val bundle = Bundle()
+        bundle.putInt("movie_id", movie.id)
+
+        //WHEN
+        val scenario = launchFragmentInContainer<MovieDetailFragment>(
+            fragmentArgs = bundle,
+            factory = fragmentFactory
+        )
+
+        //THEN
+        onView(withId(R.id.movie_title)).check(matches(withText(movie.title)))
         onView(withId(R.id.movie_description)).check(matches(withText(movie.description)))
     }
 }

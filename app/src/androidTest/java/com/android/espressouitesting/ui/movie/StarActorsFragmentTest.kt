@@ -23,6 +23,7 @@ class StarActorsFragmentTest {
         val bundle = Bundle()
         bundle.putStringArrayList("args_actors", startActors)
 
+        //WHEN
         val scenario = launchFragmentInContainer<StarActorsFragment>(
             fragmentArgs = bundle,
             factory = fragmentFactory
