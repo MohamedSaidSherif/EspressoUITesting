@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.android.espressouitesting">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,10 +19,19 @@
         android:theme="@style/Theme.EspressoUITesting"
         tools:targetApi="31">
         <activity
-            android:name=".ui.main.SecondaryActivity"
+            android:name=".ui.gallery.GalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.movie.MoviesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.SecondaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.camera.CameraActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
