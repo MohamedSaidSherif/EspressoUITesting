@@ -20,7 +20,7 @@
         android:theme="@style/Theme.EspressoUITesting"
         tools:targetApi="31">
         <activity
-            android:name=".ui.dialog.DialogActivity"
+            android:name=".ui.camera.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.gallery.GalleryActivity"
@@ -35,7 +35,7 @@
             android:name=".ui.main.SecondaryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.camera.CameraActivity"
+            android:name=".ui.dialog.DialogActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

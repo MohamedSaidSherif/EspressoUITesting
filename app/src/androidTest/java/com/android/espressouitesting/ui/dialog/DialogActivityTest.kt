@@ -9,6 +9,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.espressouitesting.R
+import com.android.espressouitesting.ui.custom_matchers.ToastMatcher
+import com.android.espressouitesting.ui.dialog.DialogActivity.Companion.buildToastMessage
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -45,5 +47,10 @@ class DialogActivityTest {
         onView(withText(R.string.text_enter_name)).check(doesNotExist())
 
         onView(withId(R.id.text_name)).check(matches(withText(EXPECTED_NAME)))
+
+        //test if toast is displayed
+//        onView(withText(buildToastMessage(EXPECTED_NAME)))
+//            .inRoot(ToastMatcher())
+//        .check(matches(isDisplayed()))
     }
 }

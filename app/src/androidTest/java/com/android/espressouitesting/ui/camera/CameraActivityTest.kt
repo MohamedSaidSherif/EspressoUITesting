@@ -14,9 +14,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import androidx.test.platform.app.InstrumentationRegistry
 import com.android.espressouitesting.R
-import com.android.espressouitesting.ui.camera.ImageViewHasDrawableMatcher.hasDrawable
+import com.android.espressouitesting.ui.custom_matchers.ImageViewHasDrawableMatcher.hasDrawable
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
 import org.junit.Rule

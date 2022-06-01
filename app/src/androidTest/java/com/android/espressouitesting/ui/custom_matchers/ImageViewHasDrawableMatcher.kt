@@ -1,4 +1,4 @@
-package com.android.espressouitesting.ui.camera
+package com.android.espressouitesting.ui.custom_matchers
 
 import android.view.View
 import android.widget.ImageView
