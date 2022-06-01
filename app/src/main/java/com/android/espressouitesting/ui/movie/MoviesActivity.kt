@@ -1,14 +1,17 @@
 package com.android.espressouitesting.ui.movie
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.android.espressouitesting.R
 import com.android.espressouitesting.data.source.MoviesDataSource
 import com.android.espressouitesting.data.source.MoviesRemoteDataSource
 import com.android.espressouitesting.factory.MovieFragmentFactory
+import com.android.espressouitesting.ui.UICommunicationListener
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.activity_movies.*
 
-class MoviesActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity(), UICommunicationListener {
 
     //dependencies (typically would be injected with dagger)
     lateinit var requestOptions: RequestOptions
@@ -24,6 +27,13 @@ class MoviesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movies)
 
         init()
+    }
+
+    override fun loading(isLoading: Boolean) {
+        if (isLoading)
+            progress_bar.visibility = View.VISIBLE
+        else
+            progress_bar.visibility = View.INVISIBLE
     }
 
     private fun init() {

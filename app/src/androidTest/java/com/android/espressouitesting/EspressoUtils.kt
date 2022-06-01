@@ -51,7 +51,7 @@ object EspressoUtils {
         }
     }
 
-    fun onViewWait(viewMatcher: Matcher<View>, timeout: Int = 10): ViewInteraction {
+    fun onViewWait(viewMatcher: Matcher<View>, timeout: Int = 5): ViewInteraction {
         val waitPerTry = 300
         val maxTries = timeout * 1000 / waitPerTry
         for (i in 1..maxTries) {
