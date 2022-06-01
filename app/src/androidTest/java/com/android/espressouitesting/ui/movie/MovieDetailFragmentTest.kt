@@ -7,8 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.espressouitesting.R
-import com.android.espressouitesting.data.DummyMovies
-import com.android.espressouitesting.data.Movie
+import com.android.espressouitesting.data.FakeMovieData
 import com.android.espressouitesting.data.source.MoviesRemoteDataSource
 import com.android.espressouitesting.factory.MovieFragmentFactory
 import com.bumptech.glide.request.RequestOptions
@@ -23,7 +22,7 @@ class MovieDetailFragmentTest {
     @Test
     fun test_isMovieDataVisible() {
         //GIVEN
-        val movie = DummyMovies.THE_RUNDOWN
+        val movie = FakeMovieData.movies[1]
         val fragmentFactory = MovieFragmentFactory()
         val bundle = Bundle()
         bundle.putInt("movie_id", movie.id)
@@ -42,7 +41,7 @@ class MovieDetailFragmentTest {
     @Test
     fun test_isMovieDataVisible_Mockk() {
         //GIVEN
-        val movie = DummyMovies.THE_RUNDOWN
+        val movie = FakeMovieData.movies[1]
 
         val moviesDataSource = mockk<MoviesRemoteDataSource>()
         every {

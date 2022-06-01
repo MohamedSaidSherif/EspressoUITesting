@@ -28,20 +28,22 @@ class MoviesActivity : AppCompatActivity() {
 
     private fun init() {
         if (supportFragmentManager.fragments.size == 0) {
-            val movieId = 1
-            val bundle = Bundle()
-            bundle.putInt("movie_id", movieId)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MovieDetailFragment::class.java, bundle)
+                .replace(R.id.container, MovieListFragment::class.java, null)
                 .commit()
         }
     }
 
-    private fun initDependencies() {
-        requestOptions = RequestOptions
-            .placeholderOf(R.drawable.default_image)
-            .error(R.drawable.default_image)
-
-        moviesDataSource = MoviesRemoteDataSource()
+    private fun initDependencies(){
+        if(!::requestOptions.isInitialized){
+            // glide
+            requestOptions = RequestOptions
+                .placeholderOf(R.drawable.default_image)
+                .error(R.drawable.default_image)
+        }
+        if(!::moviesDataSource.isInitialized){
+            // Data Source
+            moviesDataSource = MoviesRemoteDataSource()
+        }
     }
 }

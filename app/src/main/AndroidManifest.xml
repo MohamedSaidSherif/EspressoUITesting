@@ -26,7 +26,7 @@
             android:name=".ui.gallery.GalleryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.movie.MoviesActivity"
+            android:name=".ui.dialog.DialogActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
@@ -35,7 +35,7 @@
             android:name=".ui.main.SecondaryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.dialog.DialogActivity"
+            android:name=".ui.movie.MoviesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
