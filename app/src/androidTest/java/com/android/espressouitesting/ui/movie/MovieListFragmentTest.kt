@@ -9,17 +9,14 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.android.espressouitesting.EspressoUtils.onViewWait
-import com.android.espressouitesting.EspressoUtils.withRecyclerView
 import com.android.espressouitesting.R
 import com.android.espressouitesting.data.FakeMovieData
 import com.android.espressouitesting.util.EspressoIdlingResource
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MovieListFragmentTest {
 
@@ -43,8 +40,8 @@ class MovieListFragmentTest {
      * RecyclerView Comes into view
      */
     @Test
-    fun test_isMovieListFragmentDisplayed_onAppLaunch() {
-        onViewWait(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+    fun a_test_isMovieListFragmentDisplayed_onAppLaunch() {
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
     }
 
     /**
@@ -53,7 +50,7 @@ class MovieListFragmentTest {
      */
     @Test
     fun test_selectListItem_isDetailFragmentDisplayed() {
-        onViewWait(withId(R.id.recycler_view))
+        onView(withId(R.id.recycler_view))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<MoviesListAdapter.MovieViewHolder>(
@@ -95,7 +92,7 @@ class MovieListFragmentTest {
      */
     @Test
     fun test_navigateToDirectorsFragment_validateDirectorsList() {
-        onViewWait(withId(R.id.recycler_view))
+        onView(withId(R.id.recycler_view))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<MoviesListAdapter.MovieViewHolder>(
@@ -120,7 +117,7 @@ class MovieListFragmentTest {
      */
     @Test
     fun test_navigateToStarActorsFragment_validateStarActorsList() {
-        onViewWait(withId(R.id.recycler_view))
+        onView(withId(R.id.recycler_view))
             .perform(
                 RecyclerViewActions
                     .actionOnItemAtPosition<MoviesListAdapter.MovieViewHolder>(
