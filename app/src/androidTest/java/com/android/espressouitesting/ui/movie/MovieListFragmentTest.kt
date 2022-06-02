@@ -12,6 +12,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.espressouitesting.R
 import com.android.espressouitesting.data.FakeMovieData
 import com.android.espressouitesting.util.EspressoIdlingResource
+import com.android.espressouitesting.util.EspressoIdlingResourceRule
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
@@ -23,18 +24,21 @@ class MovieListFragmentTest {
     @get: Rule
     val activityScenarioRule = ActivityScenarioRule(MoviesActivity::class.java)
 
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
+
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
 
-    @Before
-    fun registerIdlingResource() {
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
-    }
-
-    @After
-    fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
-    }
+//    @Before
+//    fun registerIdlingResource() {
+//        IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
+//    }
+//
+//    @After
+//    fun unregisterIdlingResource() {
+//        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
+//    }
 
     /**
      * RecyclerView Comes into view
