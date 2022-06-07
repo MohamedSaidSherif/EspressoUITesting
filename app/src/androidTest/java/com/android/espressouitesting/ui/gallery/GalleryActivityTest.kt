@@ -7,19 +7,22 @@ import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.provider.MediaStore
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.espressouitesting.R
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,9 +31,21 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class GalleryActivityTest{
 
-    @get:Rule
-    val intentTesRule = IntentsTestRule(GalleryActivity::class.java)
+//    @get: Rule
+//    val intentsTestRule = IntentsTestRule(GalleryActivity::class.java)
 
+    @get:Rule
+    val activityScenarioRule = ActivityScenarioRule(GalleryActivity::class.java)
+
+    @Before
+    fun setUp() {
+        Intents.init()
+    }
+
+    @After
+    fun tearDown() {
+        Intents.release()
+    }
 
     @Test
     fun test_validateIntentSentToPickPackage() {
@@ -58,7 +73,7 @@ class GalleryActivityTest{
                     resource.getResourceEntryName(R.drawable.ic_launcher_background)
         )
         val resultIntent = Intent()
-        resultIntent.setData(imageUri)
+        resultIntent.data = imageUri
         return Instrumentation.ActivityResult(RESULT_OK, resultIntent)
     }
 }

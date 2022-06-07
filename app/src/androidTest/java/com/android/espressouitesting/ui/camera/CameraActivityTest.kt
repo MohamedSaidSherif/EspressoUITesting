@@ -2,22 +2,28 @@ package com.android.espressouitesting.ui.camera
 
 import android.app.Activity
 import android.app.Instrumentation
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.espressouitesting.R
 import com.android.espressouitesting.ui.custom_matchers.ImageViewHasDrawableMatcher.hasDrawable
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,8 +32,21 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class CameraActivityTest {
 
-    @get: Rule
-    val intentsTestRule = IntentsTestRule(CameraActivity::class.java)
+//    @get: Rule
+//    val intentsTestRule = IntentsTestRule(CameraActivity::class.java)
+
+    @get:Rule
+    val activityScenarioRule = ActivityScenarioRule(CameraActivity::class.java)
+
+    @Before
+    fun setUp() {
+        Intents.init()
+    }
+
+    @After
+    fun tearDown() {
+        Intents.release()
+    }
 
     @Test
     fun test_cameraIntent_isBitmapSetToImageView() {
@@ -51,7 +70,7 @@ class CameraActivityTest {
             KEY_IMAGE_DATA,
             BitmapFactory.decodeResource(
 //                InstrumentationRegistry.getInstrumentation().context.resources, OR
-                intentsTestRule.activity.resources,
+                ApplicationProvider.getApplicationContext<Context>().resources,
                 R.drawable.ic_launcher_background
             )
         )
